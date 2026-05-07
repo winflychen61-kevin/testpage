@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的個人網頁 | My Personal Page</title>
+  <meta name="description" content="我的個人網頁，介紹我的興趣與生活 — 以 HTML、CSS、JS 製作。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Chiron+GoRound+TC:wght@200..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Floating particles background ── -->
+  <div class="bg-particles" id="particles" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════
+       HEADER
+  ══════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-badge">✨ 歡迎來到我的個人網頁</div>
+      <h1 class="site-title">我的<span class="gradient-text">個人網頁</span></h1>
+      <p class="site-subtitle">
+        分享我的興趣、生活與故事 — 音樂、旅行、與閱讀。<br />
+        <em>My personal space on the internet.</em>
+      </p>
+      <!-- animated underline bar -->
+      <div class="title-bar" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════
+       MAIN CONTENT – Hobby Cards
+  ══════════════════════════════ -->
+  <main class="main-content">
+    <div class="cards-grid">
+
+      <!-- Card 1 : Music -->
+      <article class="hobby-card" id="cardMusic" data-delay="0">
+        <div class="card-img-wrap">
+          <div class="card-img music-img">
+            <img src="image/吉他.jpg" alt="Guitar" class="card-real-img" />
+            <div class="img-glow music-glow"></div>
+          </div>
+          <div class="card-tag">Hobby #1</div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Music</h2>
+          <p class="card-desc">
+            I love to play music, and I'm currently learning how to play the
+            guitar! I can also play the piano and drums. One day, I'd love to
+            start a rock band with my friends!
+          </p>
+          <div class="card-icons" aria-label="Instruments">
+            <span class="instrument" title="Guitar">🎸</span>
+            <span class="instrument" title="Piano">🎹</span>
+            <span class="instrument" title="Drums">🥁</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 : Travel -->
+      <article class="hobby-card featured-card" id="cardTravel" data-delay="150">
+        <div class="card-img-wrap">
+          <div class="card-img travel-img">
+            <span class="card-emoji">🏛️</span>
+            <div class="img-glow travel-glow"></div>
+          </div>
+          <div class="card-tag">Hobby #2</div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Travel</h2>
+          <p class="card-desc">
+            I love to travel with my family! I think it's important to learn
+            about the different cultures, food, languages, and history of all
+            the different places in the world.
+          </p>
+          <div class="card-countries" aria-label="Places visited">
+            <span class="country-flag" title="Cambodia">🇰🇭</span>
+            <span class="country-flag" title="Japan">🇯🇵</span>
+            <span class="country-flag" title="France">🇫🇷</span>
+            <span class="country-flag" title="More...">🌍</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 : Reading -->
+      <article class="hobby-card" id="cardReading" data-delay="300">
+        <div class="card-img-wrap">
+          <div class="card-img reading-img">
+            <span class="card-emoji">📚</span>
+            <div class="img-glow reading-glow"></div>
+          </div>
+          <div class="card-tag">Hobby #3</div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Reading</h2>
+          <p class="card-desc">
+            I love reading fantasy and science-fiction! Right now I'm reading
+            <em>"Dragon Pearl"</em> by Yoon Ha Lee, which is the first book
+            in the Thousand Worlds series.
+          </p>
+          <div class="card-genres" aria-label="Favourite genres">
+            <span class="genre-tag">Fantasy</span>
+            <span class="genre-tag">Sci-Fi</span>
+            <span class="genre-tag">Adventure</span>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /.cards-grid -->
+  </main>
+
+  <!-- ══════════════════════════════
+       INTERACTIVE QUIZ BANNER
+  ══════════════════════════════ -->
+  <section class="quiz-section" id="quizSection">
+    <div class="quiz-inner">
+      <div class="quiz-heading">
+        <span class="quiz-icon">🎯</span>
+        <h2>Quick Quiz</h2>
+        <p>Which hobby do you think matches each clue?</p>
+      </div>
+      <div class="quiz-q" id="quizDisplay">
+        <p class="quiz-clue" id="quizClue">Loading…</p>
+        <div class="quiz-opts" id="quizOpts"></div>
+        <p class="quiz-fb"   id="quizFb"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       FOOTER
+  ══════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-title">My First Website</p>
+      <p class="footer-sub">Made with ❤️ using HTML · CSS · JS</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

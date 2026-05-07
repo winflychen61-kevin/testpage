@@ -1,0 +1,324 @@
+/* ════════════════════════════════════════════
+   style.css  –  My Hobbies  (Premium Dark)
+   ════════════════════════════════════════════ */
+
+/* ── Tokens ─────────────────────────────── */
+:root {
+  --bg:          #0d1117;
+  --surface:     #161b27;
+  --surface2:    #1e2535;
+  --border:      rgba(255,255,255,0.07);
+  --primary:     #818cf8;       /* indigo-400  */
+  --primary-d:   #6366f1;       /* indigo-500  */
+  --accent-m:    #f472b6;       /* music  – pink   */
+  --accent-t:    #34d399;       /* travel – green  */
+  --accent-r:    #fb923c;       /* reading– orange */
+  --text:        #e2e8f0;
+  --muted:       #94a3b8;
+  --grad-hero: linear-gradient(135deg,#818cf8 0%,#34d399 100%);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+  --radius:    1.25rem;
+  --radius-sm: 0.6rem;
+  --ease: cubic-bezier(.25,.8,.25,1);
+  --font: 'Chiron GoRound TC','Outfit',sans-serif;
+}
+
+/* ── Reset ───────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  line-height:1.7;
+}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
+
+/* ── Particles BG ────────────────────────── */
+.bg-particles{
+  position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;
+}
+.particle{
+  position:absolute;border-radius:50%;opacity:.15;
+  animation:rise var(--dur,14s) var(--del,0s) linear infinite;
+}
+@keyframes rise{
+  0%  {transform:translateY(110vh) scale(0);opacity:0}
+  10% {opacity:.15}
+  90% {opacity:.15}
+  100%{transform:translateY(-10vh) scale(1);opacity:0}
+}
+
+/* ── Layout helpers ──────────────────────── */
+.gradient-text{
+  background:var(--grad-hero);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* ══════════════════════════════════════════
+   HEADER
+   ══════════════════════════════════════════ */
+.site-header{
+  position:relative;z-index:1;
+  text-align:center;
+  padding:6rem 1.5rem 4rem;
+}
+.header-badge{
+  display:inline-block;
+  padding:.35rem 1.2rem;
+  background:rgba(129,140,248,.12);
+  border:1px solid rgba(129,140,248,.3);
+  border-radius:100px;
+  font-size:.85rem;color:var(--primary);
+  font-weight:600;letter-spacing:.04em;
+  margin-bottom:1.4rem;
+  animation:fadeDown .7s var(--ease) both;
+}
+.site-title{
+  font-size:clamp(3rem,8vw,5.5rem);
+  font-weight:900;
+  line-height:1.05;
+  margin-bottom:1.2rem;
+  animation:fadeDown .85s .1s var(--ease) both;
+}
+.site-subtitle{
+  color:var(--muted);
+  font-size:clamp(.95rem,2vw,1.15rem);
+  max-width:480px;margin-inline:auto;
+  margin-bottom:2rem;
+  animation:fadeDown 1s .2s var(--ease) both;
+}
+.site-subtitle em{font-style:italic;color:var(--primary);font-size:.9em}
+.title-bar{
+  width:80px;height:4px;
+  background:var(--grad-hero);
+  border-radius:2px;
+  margin-inline:auto;
+  animation:expandW .9s .4s var(--ease) both;
+}
+@keyframes expandW{from{width:0}to{width:80px}}
+
+/* ══════════════════════════════════════════
+   MAIN / CARDS GRID
+   ══════════════════════════════════════════ */
+.main-content{
+  position:relative;z-index:1;
+  max-width:1200px;margin-inline:auto;
+  padding:2rem 1.5rem 5rem;
+}
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.8rem;
+  align-items:start;
+}
+
+/* ── Single Card ─────────────────────────── */
+.hobby-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+  opacity:0;transform:translateY(40px);   /* JS reveals */
+  cursor:default;
+}
+.hobby-card:hover{
+  transform:translateY(-10px) scale(1.01);
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+}
+.hobby-card.visible{
+  opacity:1;transform:translateY(0);
+  transition:
+    opacity .65s var(--ease),
+    transform .65s var(--ease),
+    box-shadow .35s var(--ease),
+    border-color .35s var(--ease);
+}
+
+/* featured middle card */
+.featured-card{
+  border-color:rgba(129,140,248,.35);
+  box-shadow:0 0 40px rgba(129,140,248,.15);
+}
+.featured-card:hover{border-color:rgba(129,140,248,.6)}
+
+/* card #1 hover */
+#cardMusic:hover  {border-color:rgba(244,114,182,.45)}
+/* card #2 hover */
+#cardTravel:hover {border-color:rgba(52,211,153,.45)}
+/* card #3 hover */
+#cardReading:hover{border-color:rgba(251,146,60,.45)}
+
+/* ── Card image band ─────────────────────── */
+.card-img-wrap{position:relative}
+.card-img{
+  height:180px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.music-img  {background:linear-gradient(135deg,#2d1b4e,#1a1a2e)}
+.travel-img {background:linear-gradient(135deg,#0a2e1a,#0d1b2a)}
+.reading-img{background:linear-gradient(135deg,#2e1a0a,#1a1a0d)}
+
+.card-emoji{
+  font-size:4.5rem;
+  position:relative;z-index:1;
+  animation:floatEmoji 4s ease-in-out infinite;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.5));
+}
+@keyframes floatEmoji{
+  0%,100%{transform:translateY(0) rotate(-3deg)}
+  50%    {transform:translateY(-12px) rotate(3deg)}
+}
+
+/* ── Real photo inside card image band ── */
+/* 高度與其他卡片相同(180px)，圖片等比縮小置中 */
+.card-real-img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:contain;    /* 等比縮小，不裁切 */
+  object-position:center;
+  z-index:1;
+  padding:12px;          /* 四周留少許空白，圖片不貼邊 */
+  transition:transform .5s var(--ease),filter .5s var(--ease);
+  filter:brightness(.95) saturate(1.1);
+}
+#cardMusic:hover .card-real-img{
+  transform:scale(1.05);
+  filter:brightness(1) saturate(1.25);
+}
+
+.img-glow{
+  position:absolute;inset:0;border-radius:50%;
+  filter:blur(55px);opacity:.6;
+  width:140px;height:140px;
+  margin:auto;
+}
+.music-glow  {background:var(--accent-m)}
+.travel-glow {background:var(--accent-t)}
+.reading-glow{background:var(--accent-r)}
+
+.card-tag{
+  position:absolute;top:.9rem;right:.9rem;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--border);
+  backdrop-filter:blur(8px);
+  border-radius:100px;
+  padding:.2rem .8rem;
+  font-size:.75rem;color:var(--muted);
+  font-weight:600;letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+/* ── Card body ───────────────────────────── */
+.card-body{padding:1.6rem 1.6rem 1.8rem;flex:1;display:flex;flex-direction:column;gap:.9rem}
+.card-title{
+  font-size:1.6rem;font-weight:800;
+  font-family:'Outfit',sans-serif;
+}
+#cardMusic   .card-title{color:var(--accent-m)}
+#cardTravel  .card-title{color:var(--accent-t)}
+#cardReading .card-title{color:var(--accent-r)}
+
+.card-desc{color:var(--muted);font-size:.96rem;line-height:1.7;flex:1}
+.card-desc em{font-style:italic;color:var(--text)}
+
+/* instruments row */
+.card-icons,.card-countries{display:flex;gap:.7rem;flex-wrap:wrap}
+.instrument,.country-flag{font-size:1.7rem;cursor:default;transition:transform .2s}
+.instrument:hover,.country-flag:hover{transform:scale(1.3) rotate(5deg)}
+
+/* genre tags */
+.card-genres{display:flex;gap:.5rem;flex-wrap:wrap}
+.genre-tag{
+  padding:.25rem .85rem;
+  background:rgba(251,146,60,.12);
+  border:1px solid rgba(251,146,60,.3);
+  border-radius:100px;
+  font-size:.78rem;color:var(--accent-r);
+  font-weight:600;letter-spacing:.03em;
+}
+
+/* ══════════════════════════════════════════
+   QUIZ SECTION
+   ══════════════════════════════════════════ */
+.quiz-section{
+  position:relative;z-index:1;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:4rem 1.5rem;
+}
+.quiz-inner{max-width:660px;margin-inline:auto;text-align:center}
+.quiz-icon{font-size:2.5rem;display:block;margin-bottom:.6rem}
+.quiz-heading h2{
+  font-size:1.9rem;font-weight:800;margin-bottom:.4rem;
+}
+.quiz-heading p{color:var(--muted);margin-bottom:2rem}
+.quiz-q{display:flex;flex-direction:column;gap:1rem;align-items:center}
+.quiz-clue{
+  font-size:1.15rem;font-weight:600;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.2rem 1.6rem;
+  width:100%;text-align:left;
+}
+.quiz-opts{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center}
+.quiz-opt{
+  padding:.55rem 1.4rem;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-size:.95rem;font-family:var(--font);
+  color:var(--text);cursor:pointer;
+  transition:background .2s,border-color .2s,transform .15s;
+}
+.quiz-opt:hover{background:rgba(129,140,248,.12);border-color:var(--primary);transform:translateY(-2px)}
+.quiz-opt.correct{background:rgba(52,211,153,.15);border-color:#34d399;color:#34d399;pointer-events:none}
+.quiz-opt.wrong  {background:rgba(239,68,68,.12); border-color:#ef4444;color:#f87171;pointer-events:none}
+.quiz-opt.disabled{pointer-events:none}
+.quiz-fb{font-size:.97rem;font-weight:600;min-height:1.4rem}
+.quiz-fb.ok {color:#34d399}
+.quiz-fb.bad{color:#f87171}
+
+/* ══════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════ */
+.site-footer{
+  position:relative;z-index:1;
+  text-align:center;
+  padding:3rem 1.5rem;
+  background:var(--bg);
+  border-top:1px solid var(--border);
+}
+.footer-title{font-size:1.1rem;font-weight:700;margin-bottom:.4rem}
+.footer-sub{color:var(--muted);font-size:.9rem}
+
+/* ══════════════════════════════════════════
+   KEYFRAMES
+   ══════════════════════════════════════════ */
+@keyframes fadeDown{
+  from{opacity:0;transform:translateY(-20px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+@media(max-width:900px){
+  .cards-grid{grid-template-columns:1fr 1fr}
+  #cardReading{grid-column:1/-1}
+}
+@media(max-width:560px){
+  .cards-grid{grid-template-columns:1fr}
+  #cardReading{grid-column:auto}
+}
